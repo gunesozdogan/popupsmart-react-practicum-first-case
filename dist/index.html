@@ -30,12 +30,78 @@
                 </div>
             </header>
             <main>
-                <nav>
-                    <div class="today">
-                        <span>Today</span>
+                <nav class="nav">
+                    <div class="inbox-section nav-section">
+                        <span class="inbox-heading nav-heading"
+                            ><?xml version="1.0" ?><svg
+                                class="inbox-icon nav-icon"
+                                id="Layer_2"
+                                style="enable-background: new 0 0 32 32"
+                                version="1.1"
+                                viewBox="0 0 32 32"
+                                xml:space="preserve"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                                <g>
+                                    <path
+                                        d="M31.33044,16.76752L25.17084,4.8183c-0.25684-0.49896-0.77142-0.81244-1.33295-0.81244H8.15955   c-0.56152,0-1.07611,0.31348-1.33295,0.81244L0.66699,16.76752C0.56665,16.98346,0.50891,17.21674,0.5,17.45496v9.03931   c0,0.828,0.67181,1.49988,1.49988,1.49988h27.99768c0.82806,0,1.49988-0.67188,1.49988-1.49988   c-0.01239-0.05481,0.01526-9.04504-0.00531-9.09216C31.48468,17.18103,31.42102,16.96759,31.33044,16.76752z M9.07349,7.00562   h13.85046l4.61316,8.94946h-6.88837c-0.82806,0-1.49988,0.71185-1.49988,1.53992c-0.11523,4.16351-6.20898,4.15924-6.30029-0.04016   c0-0.82794-0.67181-1.49976-1.49988-1.49976H4.46033L9.07349,7.00562z M28.49768,24.99438H3.49976v-6.03955h6.52386   c0.65717,2.68921,3.08667,4.69,5.9751,4.69c2.87964,0,5.30328-1.98907,5.96924-4.69h6.52972V24.99438z"
+                                    />
+                                </g>
+                            </svg>
+                            Inbox</span
+                        >
                     </div>
-                    <div><span class="this-week"></span></div>
-                    <div>Projects</div>
+                    <div class="today-section nav-section">
+                        <span class="today-heading nav-heading"
+                            ><?xml version="1.0" ?><svg
+                                class="today-icon nav-icon"
+                                data-name="Layer 1"
+                                id="Layer_1"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <title />
+                                <path
+                                    d="M18,5V3a1,1,0,0,0-2,0V5H8V3A1,1,0,0,0,6,3V5H2V21H22V5Zm2,14H4V7H20Zm-3.94-7.58-1.2-1.2L11.3,13.78,9.14,11.63l-1.2,1.2,3.36,3.36Z"
+                                /></svg
+                            >Today</span
+                        >
+                    </div>
+                    <div class="this-week-section nav-section">
+                        <span class="this-week-heading nav-heading"
+                            ><?xml version="1.0" ?><svg
+                                class="this-week-icon nav-icon"
+                                fill="currentColor"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                width="16"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                                />
+                                <path
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+                                /></svg
+                            >This Week</span
+                        >
+                    </div>
+                    <div class="projects-section nav-section">
+                        <span class="projects-heading">Projects</span>
+                        <button class="add-project-btn">
+                            <?xml version="1.0" ?><svg
+                                class="nav-icon"
+                                viewBox="0 0 448 512"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"
+                                /></svg
+                            >Add Project
+                        </button>
+                        <div class="projects"></div>
+                    </div>
                 </nav>
             </main>
             <footer></footer>
