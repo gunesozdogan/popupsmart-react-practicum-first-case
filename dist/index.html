@@ -5,8 +5,40 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="style.css" />
         <script src="main.js" defer></script>
     </head>
-    <body></body>
+    <body>
+        <div class="outer-container">
+            <header class="header">
+                <h1>Todo App</h1>
+                <div class="header-right">
+                    <button class="login-btn header-btn">Login</button>
+                    <button class="theme-color-switch-btn header-btn">
+                        <img
+                            src="icons/lightTheme.svg"
+                            alt="theme icon"
+                            class="theme-color-icon"
+                        />
+                    </button>
+                </div>
+            </header>
+            <main>
+                <nav>
+                    <div class="today">
+                        <span>Today</span>
+                    </div>
+                    <div><span class="this-week"></span></div>
+                    <div>Projects</div>
+                </nav>
+            </main>
+            <footer></footer>
+        </div>
+    </body>
 </html>

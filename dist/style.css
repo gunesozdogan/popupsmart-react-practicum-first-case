@@ -1,0 +1,67 @@
+:root {
+    font-size: 10px;
+    --text-color: #222;
+    --main-bkg-color: #fff;
+    --sec-bkg-color: #eee;
+    --anchor-color: #0033cc;
+    color: var(--text-color);
+}
+
+:root.dark-theme {
+    --text-color: #eee;
+    --main-bkg-color: #121212;
+    --sec-bkg-color: #4e4e50;
+    /* --sec-bkg-color: #121212; */
+    --anchor-color: #c3073f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-bkg-color);
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100vw;
+    height: 10vh;
+    padding: 2rem 4rem;
+    background-color: var(--sec-bkg-color);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.header-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.theme-color-icon {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
