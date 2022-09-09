@@ -53,31 +53,68 @@ h1 {
     font-size: 4rem;
 }
 
-.header-right {
+.dropdown-section {
+    position: relative;
+    width: 10vw;
+    min-width: 15rem;
     display: flex;
-    align-items: center;
-    gap: 3rem;
+    justify-content: center;
 }
 
-.header-btn {
+.login-btn,
+.account-btn {
     background-color: transparent;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 500;
     cursor: pointer;
     color: var(--text-color);
 }
 
-.login-btn:hover {
-    font-weight: 800;
+.login-btn:hover,
+.account-btn:hover {
+    font-weight: 600;
 }
 
-.theme-color-icon {
-    height: 2rem;
-    width: 2rem;
+.dropdown-section:hover .account-btn + .dropdown-list {
+    display: flex;
+}
+
+.dropdown-list {
+    list-style: none;
+    position: absolute;
+    top: 90%;
+    left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 2rem;
+    font-size: 1.2rem;
+    background-color: var(--sec-bkg-color);
+    color: var(--text-color);
+    width: 100%;
+    min-width: 100%;
+    padding: 2rem;
+    height: 10rem;
+}
+
+.dropdown-list li {
     display: flex;
     align-items: center;
-    background-color: transparent;
+    gap: 1rem;
+    width: 100%;
+    min-width: 100%;
+    font-size: 1.3rem;
+}
+
+.dropdown-list img,
+.dropdown-list svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.dropdown-list {
+    display: none;
 }
 
 /* Main Section */
