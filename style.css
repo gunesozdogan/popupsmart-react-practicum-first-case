@@ -3,16 +3,15 @@
     --text-color: #222;
     --main-bkg-color: #fff;
     --sec-bkg-color: #eee;
-    --anchor-color: #0033cc;
+    --helper-color: #eee;
     color: var(--text-color);
 }
 
 :root.dark-theme {
     --text-color: #eee;
     --main-bkg-color: #121212;
-    --sec-bkg-color: #4e4e50;
-    /* --sec-bkg-color: #121212; */
-    --anchor-color: #c3073f;
+    --sec-bkg-color: #c3073f;
+    --helper-color: #222;
 }
 
 * {
@@ -20,6 +19,15 @@
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
+
+    /* no text focus */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 .outer-container {
@@ -29,6 +37,7 @@
     min-height: 100vh;
 }
 
+/* Header Section*/
 header {
     display: flex;
     align-items: center;
@@ -36,11 +45,12 @@ header {
     min-width: 100vw;
     height: 10vh;
     padding: 2rem 4rem;
-    background-color: var(--sec-bkg-color);
+    background-color: var(--helper-color);
+    z-index: 2000;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .header-right {
@@ -53,9 +63,13 @@ h1 {
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     color: var(--text-color);
+}
+
+.login-btn:hover {
+    font-weight: 800;
 }
 
 .theme-color-icon {
@@ -64,4 +78,84 @@ h1 {
     display: flex;
     align-items: center;
     background-color: transparent;
+}
+
+/* Main Section */
+main {
+    display: flex;
+    flex: 1;
+}
+
+/* Nav Section */
+.nav {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-bkg-color);
+    border-right: 3px solid var(--helper-color);
+    width: 15vw;
+    min-width: 25rem;
+    color: var(--text-color);
+    padding: 3rem;
+    gap: 2rem;
+    font-size: 1.6rem;
+    z-index: 1000;
+}
+
+.nav-heading,
+.projects-heading {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.projects-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    cursor: auto;
+}
+
+.nav-heading {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-heading:hover {
+    background-color: var(--sec-bkg-color);
+}
+
+.nav-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: var(--text-color);
+}
+
+/* Projects Section */
+.projects-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-project-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: left;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    color: var(--text-color);
+}
+
+.add-project-btn:hover {
+    background-color: var(--sec-bkg-color);
 }
