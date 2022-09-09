@@ -1,7 +1,7 @@
-const btn = document.querySelector(".theme-color-switch-btn");
+const themeColorSwitchBtn = document.querySelector(".theme-color-switch-btn");
 const root = document.querySelector(":root");
 
-btn.addEventListener("click", function () {
+themeColorSwitchBtn.addEventListener("click", function () {
     root.classList.toggle("dark-theme");
     const icon = this.querySelector("img");
 
@@ -12,4 +12,13 @@ btn.addEventListener("click", function () {
         icon.src = "icons/darkTheme.svg";
         this.classList.add("dark-theme");
     }
+});
+
+const loginBtn = document.querySelector(".login-btn");
+const dropDownList = document.querySelector(".dropdown-list");
+
+loginBtn.addEventListener("click", function () {
+    this.classList.remove("login-btn");
+    this.classList.add("account-btn");
+    this.textContent = "Güneş";
 });
