@@ -1,6 +1,6 @@
 :root {
     font-size: 10px;
-    --text-color: #222;
+    --text-color: #4c586f;
     --main-bkg-color: #fff;
     --sec-bkg-color: #eee;
     --helper-color: #eee;
@@ -73,6 +73,8 @@ h1 {
     font-weight: 500;
     cursor: pointer;
     color: var(--text-color);
+    display: flex;
+    align-items: center;
 }
 
 .login-btn:hover,
@@ -102,6 +104,11 @@ h1 {
     height: 10rem;
 }
 
+.dropdown-arrow-icon {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--text-color);
+}
 .dropdown-list-item {
     display: flex;
     align-items: center;

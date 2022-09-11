@@ -13,7 +13,8 @@ const DOM = (function () {
     const usernameInput = document.querySelector(".username-input");
     const usernameError = document.querySelector(".username-error");
     const formCloseBtn = document.querySelector(".form-close-btn");
-    const loginForm = document.querySelector(".login-form");
+    const themeName = document.querySelector(".theme-name");
+    // const loginForm = document.querySelector(".login-form");
 
     function switchThemeMode() {
         root.classList.toggle("dark-theme");
@@ -22,9 +23,11 @@ const DOM = (function () {
         if (this.classList.contains("dark-theme")) {
             icon.src = "icons/lightTheme.svg";
             this.classList.remove("dark-theme");
+            themeName.textContent = "Dark Mode";
         } else {
             icon.src = "icons/darkTheme.svg";
             this.classList.add("dark-theme");
+            themeName.textContent = "Light Mode";
         }
     }
     function displayForm() {
@@ -72,7 +75,8 @@ const DOM = (function () {
         // If entered username exists, logs in
         if (await myAccounts.doesUsernameExist(username)) {
             closeForm();
-            loginBtn.textContent = username;
+            loginBtn.textContent = username + "";
+            loginBtn.innerHTML = `${username}<?xml version="1.0" ?><svg class= "dropdown-arrow-icon" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M14.83 16.42l9.17 9.17 9.17-9.17 2.83 2.83-12 12-12-12z"/><path d="M0-.75h48v48h-48z" fill="none"/></svg>`;
             loginBtn.classList.remove("login-btn");
             loginBtn.classList.add("account-btn");
         } else {
