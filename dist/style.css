@@ -4,6 +4,7 @@
     --main-bkg-color: #fff;
     --sec-bkg-color: #eee;
     --helper-color: #eee;
+    --helper-color-2: #4c586f;
     color: var(--text-color);
 }
 
@@ -12,6 +13,7 @@
     --main-bkg-color: #121212;
     --sec-bkg-color: #c3073f;
     --helper-color: #222;
+    --helper-color-2: #c3073f;
 }
 
 * {
@@ -45,17 +47,19 @@ header {
     min-width: 100vw;
     height: 10vh;
     padding: 2rem 4rem;
+    padding-right: 0;
     background-color: var(--helper-color);
     z-index: 2000;
 }
 
 h1 {
     font-size: 4rem;
+    min-width: 20rem;
 }
 
-.dropdown-section {
+.account-section {
     position: relative;
-    width: 10vw;
+    width: 5vw;
     min-width: 15rem;
     display: flex;
     justify-content: center;
@@ -65,7 +69,7 @@ h1 {
 .account-btn {
     background-color: transparent;
     border: none;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 500;
     cursor: pointer;
     color: var(--text-color);
@@ -76,7 +80,7 @@ h1 {
     font-weight: 600;
 }
 
-.dropdown-section:hover .account-btn + .dropdown-list {
+.account-section:hover .account-btn + .dropdown-list {
     display: flex;
 }
 
@@ -84,27 +88,28 @@ h1 {
     list-style: none;
     position: absolute;
     top: 90%;
-    left: 20%;
+    left: 10%;
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
     gap: 2rem;
     font-size: 1.2rem;
-    background-color: var(--sec-bkg-color);
+    background-color: var(--helper-color);
     color: var(--text-color);
-    width: 100%;
-    min-width: 100%;
+    width: 90%;
+    min-width: 90%;
     padding: 2rem;
     height: 10rem;
 }
 
-.dropdown-list li {
+.dropdown-list-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.6rem;
+    font-size: 1.1rem;
     width: 100%;
     min-width: 100%;
-    font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .dropdown-list img,
@@ -115,6 +120,121 @@ h1 {
 
 .dropdown-list {
     display: none;
+}
+
+.theme-mode-switch-btn,
+.logout-btn {
+    border: none;
+    font-size: 1.1rem;
+    display: Flex;
+    gap: 0.6rem;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    min-width: 100%;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.theme-mode-switch-btn:hover,
+.logout-btn:hover {
+    font-weight: 600;
+}
+
+/* Login Section */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border: 2px solid var(--helper-color-2);
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: var(--helper-color);
+    position: relative;
+}
+
+.form-close-btn {
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    left: 100%;
+    top: 0%;
+    transform: translate(-110%, 10%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.form-close-btn svg {
+    fill: var(--helper-color-2);
+}
+.username-input {
+    padding: 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgb(143, 143, 143);
+}
+
+.username-input:focus {
+    outline: none;
+}
+
+.username-error {
+    color: red;
+}
+
+.login-form h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--helper-color-2);
+}
+
+:root.dark-theme .login-form h2 {
+    color: #eee;
+}
+
+.form-login-btn {
+    background-color: var(--helper-color-2);
+    border: none;
+    border-radius: 1rem;
+    width: 30%;
+    align-self: center;
+    padding: 0.5rem 1rem;
+    color: #eee;
+    cursor: pointer;
+}
+
+:root.dark-theme .form-login-btn {
+    background-color: var(--sec-bkg-color);
+    color: #eee;
+}
+
+:root.dark-theme .form-login-btn:hover {
+    background-color: #e90f50;
+}
+
+.login-form div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.2rem;
+    justify-content: center;
+}
+
+.sign-up-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--helper-color-2);
+    font-weight: 600;
+}
+
+:root.dark-theme .sign-up-btn {
+    color: #fff;
+    color: var(--sec-bkg-color);
+}
+
+:root.dark-theme .sign-up-btn:hover {
+    color: #e90f50;
 }
 
 /* Main Section */
@@ -130,11 +250,11 @@ main {
     background-color: var(--main-bkg-color);
     border-right: 3px solid var(--helper-color);
     width: 15vw;
-    min-width: 25rem;
+    min-width: 23rem;
     color: var(--text-color);
     padding: 3rem;
     gap: 2rem;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     z-index: 1000;
 }
 
@@ -150,7 +270,7 @@ main {
 }
 
 .projects-heading {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     padding-left: 1rem;
     cursor: auto;
@@ -181,7 +301,7 @@ main {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     display: flex;
     justify-content: left;
     padding: 1rem 2rem;
@@ -195,4 +315,29 @@ main {
 
 .add-project-btn:hover {
     background-color: var(--sec-bkg-color);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 8000;
+    background-color: transparent;
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 25rem;
+    gap: 3rem;
+    /* background-color: rgba(0, 0, 0, 0.445); */
+    box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.199);
+}
+
+.hidden {
+    visibility: hidden;
 }
