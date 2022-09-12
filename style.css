@@ -13,7 +13,7 @@
     --main-bkg-color: #121212;
     --sec-bkg-color: #c3073f;
     --helper-color: #222;
-    --helper-color-2: #c3073f;
+    --helper-color-2: #fff;
 }
 
 * {
@@ -109,6 +109,7 @@ h1 {
     width: 2rem;
     fill: var(--text-color);
 }
+
 .dropdown-list-item {
     display: flex;
     align-items: center;
@@ -152,12 +153,15 @@ h1 {
 .login-form {
     display: flex;
     flex-direction: column;
+    width: 20%;
+    height: 40%;
     gap: 2rem;
     border: 2px solid var(--helper-color-2);
     padding: 2rem;
     border-radius: 1rem;
     background-color: var(--helper-color);
     position: relative;
+    min-width: 30rem;
 }
 
 .form-close-btn {
@@ -175,6 +179,7 @@ h1 {
 .form-close-btn svg {
     fill: var(--helper-color-2);
 }
+
 .username-input {
     padding: 1rem;
     border-radius: 0.6rem;
@@ -261,7 +266,7 @@ main {
     color: var(--text-color);
     padding: 3rem;
     gap: 2rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     z-index: 1000;
 }
 
@@ -274,6 +279,7 @@ main {
     display: flex;
     justify-content: left;
     align-items: center;
+    font-weight: 600;
 }
 
 .projects-heading {
@@ -296,6 +302,99 @@ main {
     width: 2.5rem;
     height: 2.5rem;
     fill: var(--text-color);
+}
+
+/* Todos Section */
+
+.todos-section {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0 auto;
+}
+
+.todo-container,
+.add-todo-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    min-width: 50rem;
+    padding: 1.5rem 3rem;
+    border-radius: 1rem;
+    width: 50%;
+}
+
+.todo-container:hover {
+    background-color: var(--sec-bkg-color);
+}
+
+.todo-container-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.todo-container-right {
+    /* margin-right: 15rem; */
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.todo-edit {
+    height: 2rem;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--helper-color-2);
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem 3rem;
+    cursor: pointer;
+}
+
+.todo-isCompleted {
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1.5px solid var(--helper-color-2);
+}
+
+.todo-isCompleted:hover {
+    background-color: var(--helper-color-2);
+}
+
+.add-todo-btn {
+    width: 50%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: transparent;
+    border: none;
+    padding: 2rem 3rem;
+    color: var(--helper-color-2);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-todo-icon {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--helper-color-2);
+}
+
+.add-todo-btn:hover {
+    background-color: var(--sec-bkg-color);
 }
 
 /* Projects Section */
