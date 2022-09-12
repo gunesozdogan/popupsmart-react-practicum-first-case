@@ -1,4 +1,5 @@
-const accounts = function () {
+const accounts = (function () {
+    // Checks if username exists
     const doesUsernameExist = async function (username) {
         try {
             const response = await fetch(
@@ -38,6 +39,6 @@ const accounts = function () {
     };
 
     return { doesUsernameExist, getUserTodos };
-};
+})();
 
 export default accounts;
