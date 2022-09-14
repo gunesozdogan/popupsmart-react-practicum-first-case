@@ -174,7 +174,7 @@ h1 {
     display: flex;
     flex-direction: column;
     width: 20%;
-    height: 45%;
+    height: 35%;
     gap: 2rem;
     border: 1px solid var(--text-color);
     padding: 2rem;
@@ -182,6 +182,11 @@ h1 {
     background-color: var(--form-bkg-color);
     position: relative;
     min-width: 30rem;
+    margin-bottom: 10rem;
+}
+
+:root.dark-theme .login-form {
+    border-color: gray;
 }
 
 .form-close-btn {
@@ -273,7 +278,7 @@ h1 {
 }
 
 .sign-up-btn:hover {
-    color: rgb(214, 54, 14);
+    color: rgb(255, 126, 94);
 }
 
 :root.dark-theme .sign-up-btn {
@@ -310,8 +315,7 @@ main {
     border-right: 5px solid var(--header-bkg-color);
 }
 
-.nav-heading,
-.projects-heading {
+.nav-heading {
     padding: 1rem 2rem;
     border-radius: 1rem;
     cursor: pointer;
@@ -322,12 +326,37 @@ main {
     font-weight: 500;
 }
 
-.projects-heading {
+/* .projects-heading {
     font-size: 2rem;
     font-weight: 500;
     padding-left: 1rem;
     cursor: auto;
-}
+} */
+
+/* .projects-section {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .add-project-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: left;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    color: var(--text-color);
+} */
+
+/* .add-project-btn:hover {
+    background-color: var(--header-bkg-color);
+} */
 
 .nav-heading {
     display: flex;
@@ -345,7 +374,6 @@ main {
 }
 
 /* Todos Section */
-
 .todos-section {
     width: 50%;
     padding: 2rem;
@@ -380,7 +408,6 @@ main {
 }
 
 .todo-container-right {
-    /* margin-right: 15rem; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -446,34 +473,117 @@ main {
     fill: var(--helper-color);
 }
 
+.todo-content {
+    color: var(--text-color);
+}
+
 .add-todo-btn:hover {
     background-color: var(--hover-color);
 }
 
-/* Projects Section */
-.projects-section {
+/* Add todo form section */
+.add-todo-form-container {
+    width: 50%;
+    min-width: 50rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
-.add-project-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.3rem;
+.todo-form-input-container {
     display: flex;
-    justify-content: left;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
+    justify-content: stretch;
+}
+
+.add-todo-form-name-input,
+.add-todo-form-date-input {
+    padding: 1.5rem;
+    height: 3rem;
+    border: 1px solid var(--text-color);
+    font-family: "Roboto", sans-serif;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+:root.dark-theme .add-todo-form-name-input,
+:root.dark-theme .add-todo-form-date-input {
+    background-color: #4e4e50;
+    border-color: #444;
+}
+
+.add-todo-form-name-input {
+    border-right: none;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    flex: 5;
+}
+
+.add-todo-form-date-input {
+    border-left: none;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    flex: 2;
     display: flex;
-    align-items: center;
+    text-align: right;
+}
+
+:root.dark-theme .add-todo-form-date-input {
+    color-scheme: dark;
+}
+
+.add-todo-form-name-input:focus,
+.add-todo-form-date-input:focus {
+    outline: none;
+}
+
+.todo-form-btn-container {
+    display: flex;
+    justify-content: center;
     gap: 2rem;
     width: 100%;
-    color: var(--text-color);
 }
 
-.add-project-btn:hover {
+.add-todo-form-btn,
+.cancel-todo-form-btn {
+    flex: 1;
+    border-radius: 0.7rem;
+    border: 1px solid var(--text-color);
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+:root.dark-theme .add-todo-form-btn,
+:root.dark-theme .cancel-todo-form-btn {
+    border-color: #222;
+}
+
+.add-todo-form-btn {
+    background-color: var(--helper-color);
+    color: #fff;
+}
+
+.add-todo-form-btn:hover {
+    background-color: rgb(255, 126, 94);
+}
+
+:root.dark-theme .add-todo-form-btn:hover {
+    background-color: #e90f50;
+}
+
+.cancel-todo-form-btn {
     background-color: var(--header-bkg-color);
+    color: var(--header-text-color);
+}
+
+.cancel-todo-form-btn:hover {
+    background-color: #5174a3;
+}
+
+:root.dark-theme .cancel-todo-form-btn:hover {
+    background-color: #333;
 }
 
 /* Overlay settings for forms */
@@ -491,8 +601,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    padding-top: 25rem;
+    justify-content: center;
     gap: 3rem;
     box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.199);
 }
@@ -503,22 +612,23 @@ main {
 
 /* Loading icon*/
 .loader {
-    border: 16px solid var(--header-bkg-color); /* Light grey */
-    border-top: 16px solid var(--helper-color); /* Blue */
+    border: 16px solid var(--header-bkg-color);
+    border-top: 16px solid var(--helper-color);
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
     animation: spin 2s linear infinite;
     position: absolute;
-    left: 48%;
+    left: 50%;
     top: 40%;
+    transform: translate(-50%, -10%);
 }
 
 @keyframes spin {
     0% {
-        transform: rotate(0deg);
+        transform: translate(-50%, -10%) rotate(0deg);
     }
     100% {
-        transform: rotate(360deg);
+        transform: translate(-50%, -10%) rotate(360deg);
     }
 }
