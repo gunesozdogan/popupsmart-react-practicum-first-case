@@ -85,6 +85,8 @@ const UI = (function () {
 
     // Logs user in
     async function login(e) {
+        const formOverlay = document.querySelector(".overlay-form");
+
         // Disables pressing login button multiple times
         if (isLoginPressed) {
             return;
@@ -98,9 +100,11 @@ const UI = (function () {
             isLoginPressed = false;
             return;
         }
+        formOverlay.classList.remove("hidden");
         // If entered username exists, logs in
         const username = usernameInput.value;
         if (await myAccount.doesUsernameExist(username)) {
+            formOverlay.classList.add("hidden");
             closeForm();
             // Changes login button on top right to account button
             loginBtn.textContent = username + "";
@@ -113,6 +117,7 @@ const UI = (function () {
             todosSection.appendChild(myTodos.createAddTodoBtn());
             isLoginPressed = false;
         } else {
+            formOverlay.classList.add("hidden");
             // Else displays error message
             usernameError.classList.remove("hidden");
             isLoginPressed = false;
