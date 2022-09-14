@@ -1,9 +1,9 @@
-import accounts from "./account.js";
+import account from "./account.js";
 import UI from "./UI.js";
 import utilityFunctions from "./utility.js";
 
 const todos = (function () {
-    const myAccounts = accounts;
+    const myAccount = account;
     const myUtilityFunctions = utilityFunctions;
     const todosSection = document.querySelector(".todos-section");
 
@@ -19,7 +19,7 @@ const todos = (function () {
     }
 
     // creates elements to display each todo
-    function createTodoElement(todo) {
+    function _createTodoElement(todo) {
         const div = myUtilityFunctions.createElementWithClass(
             "div",
             "todo-container"
@@ -49,7 +49,14 @@ const todos = (function () {
             "todo-edit"
         );
 
+        if (todo.isCompleted) {
+            p.style.textDecoration = "line-through";
+            span.style.textDecoration = "line-through";
+        }
+
         editBtn.textContent = "Edit";
+        div.addEventListener("click", completeTodo);
+        completeBtn.addEventListener("click", deleteTodo);
         p.textContent = todo.content;
         span.textContent = myUtilityFunctions.formatDate(new Date(todo.date));
 
@@ -63,9 +70,9 @@ const todos = (function () {
     // Displays todos on the main page
     async function displayUserTodos(username) {
         clearTodos();
-        const todos = await myAccounts.getUserTodos(username);
+        const todos = await myAccount.getUserTodos(username);
         todos.forEach(todo => {
-            todosSection.appendChild(createTodoElement(todo));
+            todosSection.appendChild(_createTodoElement(todo));
         });
     }
 
@@ -75,7 +82,49 @@ const todos = (function () {
         }
     }
 
-    return { displayUserTodos, createAddTodoBtn, clearTodos };
+    function completeTodo(e) {
+        e.stopPropagation();
+
+        const username = myAccount.username;
+        const todoContainer = this;
+        const todoContentEl = todoContainer.querySelector(".todo-content");
+        const todoContent = todoContentEl.textContent;
+        const todoDate = todoContainer.querySelector(".todo-date");
+        const userTodos = myAccount.todos;
+
+        // Strikes through the todo if its completed or deletes the strikethough otherwise
+        todoContentEl.style.textDecoration =
+            todoContentEl.style.textDecoration === "line-through"
+                ? "none"
+                : "line-through";
+        todoDate.style.textDecoration =
+            todoDate.style.textDecoration === "line-through"
+                ? "none"
+                : "line-through";
+
+        myAccount.switchCompleteUserTodo(userTodos, todoContent);
+        myAccount.updateUserTodos(username, userTodos);
+    }
+
+    function deleteTodo() {
+        const username = myAccount.username;
+        const userTodos = myAccount.todos;
+        const todoContainer = this.closest(".todo-container");
+        const todoContent =
+            todoContainer.querySelector(".todo-content").textContent;
+
+        todoContainer.remove();
+        myAccount.deleteUserTodo(userTodos, todoContent);
+        myAccount.updateUserTodos(username, userTodos);
+    }
+
+    return {
+        displayUserTodos,
+        createAddTodoBtn,
+        clearTodos,
+        deleteTodo,
+        completeTodo,
+    };
 })();
 
 export default todos;

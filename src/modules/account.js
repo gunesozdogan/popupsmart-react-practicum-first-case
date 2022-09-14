@@ -1,4 +1,6 @@
-const accounts = (function () {
+const account = (function () {
+    let todos = [];
+    let username;
     // Checks if username exists
     const doesUsernameExist = async function (username) {
         try {
@@ -21,7 +23,7 @@ const accounts = (function () {
                 {
                     method: "GET",
                     headers: {
-                        "Content-type": "application/json",
+                        "Content-type": "application/json; charset=UTF-8",
                     },
                     mode: "cors",
                 }
@@ -29,6 +31,8 @@ const accounts = (function () {
 
             if (response.status !== 500) {
                 const data = await response.json();
+                this.todos = data.todos;
+                this.username = username;
                 return data.todos;
             } else {
                 return null;
@@ -38,7 +42,57 @@ const accounts = (function () {
         }
     };
 
-    return { doesUsernameExist, getUserTodos };
+    const deleteUserTodo = async function (userTodos, todoContent) {
+        console.log(userTodos);
+        for (let i = 0; i < userTodos.length; i++) {
+            if (userTodos[i].content === todoContent) {
+                userTodos.splice(i, 1);
+            }
+        }
+        console.log(userTodos);
+        return userTodos;
+    };
+
+    const switchCompleteUserTodo = async function (userTodos, todoContent) {
+        console.log(userTodos);
+
+        for (let i = 0; i < userTodos.length; i++) {
+            if (userTodos[i].content === todoContent) {
+                userTodos[i].isCompleted = userTodos[i].isCompleted
+                    ? false
+                    : true;
+            }
+        }
+        return userTodos;
+    };
+
+    const updateUserTodos = async function (username, userTodos) {
+        const userData = {
+            id: username,
+            todos: userTodos,
+        };
+
+        fetch(`https://631dbfab789612cd07afa22a.mockapi.io/todos/${username}`, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            mode: "cors",
+            body: JSON.stringify(userData),
+        });
+
+        console.log(userTodos);
+    };
+
+    return {
+        doesUsernameExist,
+        getUserTodos,
+        deleteUserTodo,
+        updateUserTodos,
+        switchCompleteUserTodo,
+        todos,
+        username,
+    };
 })();
 
-export default accounts;
+export default account;

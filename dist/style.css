@@ -440,19 +440,11 @@ main {
     cursor: pointer;
 }
 
-/* :root.dark-theme .add-todo-btn {
-    color: #4e4e50;
-} */
-
 .add-todo-icon {
     height: 2rem;
     width: 2rem;
     fill: var(--helper-color);
 }
-
-/* :root.dark-theme .add-todo-icon {
-    fill: #4e4e50;
-} */
 
 .add-todo-btn:hover {
     background-color: var(--hover-color);

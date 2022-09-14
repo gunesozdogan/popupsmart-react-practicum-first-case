@@ -1,10 +1,10 @@
 import todos from "./todos.js";
-import accounts from "./account.js";
+import account from "./account.js";
 import utilityFunctions from "./utility.js";
 
 const UI = (function () {
     // Modules
-    const myAccounts = accounts;
+    const myAccount = account;
     const myTodos = todos;
     const themeColorSwitchBtn = document.querySelector(
         ".theme-mode-switch-btn"
@@ -100,7 +100,7 @@ const UI = (function () {
         }
         // If entered username exists, logs in
         const username = usernameInput.value;
-        if (await myAccounts.doesUsernameExist(username)) {
+        if (await myAccount.doesUsernameExist(username)) {
             closeForm();
             // Changes login button on top right to account button
             loginBtn.textContent = username + "";
