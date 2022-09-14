@@ -476,6 +476,7 @@ main {
     background-color: var(--header-bkg-color);
 }
 
+/* Overlay settings for forms */
 .overlay {
     position: fixed;
     top: 0;
@@ -493,10 +494,31 @@ main {
     justify-content: start;
     padding-top: 25rem;
     gap: 3rem;
-    /* background-color: rgba(0, 0, 0, 0.445); */
     box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.199);
 }
 
 .hidden {
     visibility: hidden;
+}
+
+/* Loading icon*/
+.loader {
+    border: 16px solid var(--header-bkg-color); /* Light grey */
+    border-top: 16px solid var(--helper-color); /* Blue */
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: 48%;
+    top: 40%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
