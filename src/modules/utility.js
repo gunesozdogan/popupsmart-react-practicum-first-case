@@ -1,8 +1,8 @@
 import { format, compareAsc } from "date-fns";
 
 const utilityFunctions = (function () {
-    function formatDate(date) {
-        return format(new Date(date), "EEE do MMM yyyy");
+    function formatDate(date, type) {
+        return format(new Date(date), type);
     }
 
     function createElementWithClass(el, className) {

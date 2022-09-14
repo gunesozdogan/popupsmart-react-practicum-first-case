@@ -7,14 +7,12 @@
 {
 "content": "Go for running",
 "isCompleted": false,
-"date": "09/11/2022",
-"project": "Inbox"
+"date": "09/11/2022"
 },
 {
 "content": "Do shopping",
 "isCompleted": false,
-"date": "11/02/2022",
-"project": "Inbox"
+"date": "11/02/2022"
 }
 ]
 },
@@ -24,14 +22,12 @@
 {
 "content": "Get kids from the school",
 "isCompleted": false,
-"date": "03/03/2022",
-"project": "Inbox"
+"date": "03/03/2022"
 },
 {
 "content": "Go to a movie",
 "isCompleted": false,
-"date": "08/08/2022",
-"project": "Inbox"
+"date": "08/08/2022"
 }
 ]
 },
@@ -41,14 +37,12 @@
 {
 "content": "Clean the house",
 "isCompleted": true,
-"date": "07/07/2022",
-"project": "Inbox"
+"date": "07/07/2022"
 },
 {
 "content": "Cook for tomorrow",
 "isCompleted": true,
-"date": "07/07/2022",
-"project": "Inbox"
+"date": "07/07/2022"
 }
 ]
 }

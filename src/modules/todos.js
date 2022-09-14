@@ -7,19 +7,8 @@ const todos = (function () {
     const myUtilityFunctions = utilityFunctions;
     const todosSection = document.querySelector(".todos-section");
 
-    // Creates add todo button
-    function createAddTodoBtn() {
-        const btn = utilityFunctions.createElementWithClass(
-            "button",
-            "add-todo-btn"
-        );
-        btn.innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg 
-            class="add-todo-icon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg> Add Todo`;
-        return btn;
-    }
-
     // creates elements to display each todo
-    function _createTodoElement(todo) {
+    function _createTodoContainer(todo) {
         const div = myUtilityFunctions.createElementWithClass(
             "div",
             "todo-container"
@@ -55,13 +44,16 @@ const todos = (function () {
         }
 
         editBtn.textContent = "Edit";
-        div.addEventListener("click", completeTodo);
+        div.addEventListener("click", switchCompleteTodo);
         completeBtn.addEventListener("click", deleteTodo);
         p.textContent = todo.content;
-        span.textContent = myUtilityFunctions.formatDate(new Date(todo.date));
+        span.textContent = myUtilityFunctions.formatDate(
+            new Date(todo.date),
+            "EEE do MMM yyyy"
+        );
 
         divLeft.append(completeBtn, p);
-        divRight.append(span, editBtn);
+        divRight.append(editBtn, span);
         div.append(divLeft, divRight);
 
         return div;
@@ -72,7 +64,7 @@ const todos = (function () {
         clearTodos();
         const todos = await myAccount.getUserTodos(username);
         todos.forEach(todo => {
-            todosSection.appendChild(_createTodoElement(todo));
+            todosSection.appendChild(_createTodoContainer(todo));
         });
     }
 
@@ -82,7 +74,7 @@ const todos = (function () {
         }
     }
 
-    function completeTodo(e) {
+    function switchCompleteTodo(e) {
         e.stopPropagation();
 
         const username = myAccount.username;
@@ -120,10 +112,9 @@ const todos = (function () {
 
     return {
         displayUserTodos,
-        createAddTodoBtn,
         clearTodos,
         deleteTodo,
-        completeTodo,
+        switchCompleteTodo,
     };
 })();
 

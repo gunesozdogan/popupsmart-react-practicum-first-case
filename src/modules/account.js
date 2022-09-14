@@ -42,20 +42,17 @@ const account = (function () {
         }
     };
 
-    const deleteUserTodo = async function (userTodos, todoContent) {
-        console.log(userTodos);
+    const deleteUserTodo = function (userTodos, todoContent) {
         for (let i = 0; i < userTodos.length; i++) {
             if (userTodos[i].content === todoContent) {
                 userTodos.splice(i, 1);
             }
         }
-        console.log(userTodos);
+
         return userTodos;
     };
 
-    const switchCompleteUserTodo = async function (userTodos, todoContent) {
-        console.log(userTodos);
-
+    const switchCompleteUserTodo = function (userTodos, todoContent) {
         for (let i = 0; i < userTodos.length; i++) {
             if (userTodos[i].content === todoContent) {
                 userTodos[i].isCompleted = userTodos[i].isCompleted
@@ -66,7 +63,7 @@ const account = (function () {
         return userTodos;
     };
 
-    const updateUserTodos = async function (username, userTodos) {
+    const updateUserTodos = function (username, userTodos) {
         const userData = {
             id: username,
             todos: userTodos,
@@ -80,8 +77,15 @@ const account = (function () {
             mode: "cors",
             body: JSON.stringify(userData),
         });
+    };
 
-        console.log(userTodos);
+    const createUserTodo = async function (
+        username,
+        content,
+        isCompleted,
+        date
+    ) {
+        return { content, isCompleted, date };
     };
 
     return {
