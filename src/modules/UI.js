@@ -61,78 +61,6 @@ const UI = (function () {
         myTodos.clearTodos();
     }
 
-    // Creates add todo button
-    function createAddTodoBtn() {
-        const btn = utilityFunctions.createElementWithClass(
-            "button",
-            "add-todo-btn"
-        );
-        btn.innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg 
-                class="add-todo-icon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg> Add Todo`;
-        btn.addEventListener("click", displayAddTodoForm);
-        return btn;
-    }
-
-    function removeAddTodoBtn() {
-        const btn = document.querySelector(".add-todo-btn");
-        btn.remove();
-    }
-
-    function removeAddTodoForm() {
-        const form = document.querySelector(".add-todo-form-container");
-        form.remove();
-        displayAddTodoButton(todosSection);
-    }
-
-    // Creates input form for adding todo and displays it
-    function displayAddTodoForm() {
-        removeAddTodoBtn();
-        const addTodoContainer = myUtilityFunctions.createElementWithClass(
-            "div",
-            "add-todo-form-container"
-        );
-        const inputContainer = myUtilityFunctions.createElementWithClass(
-            "div",
-            "todo-form-input-container"
-        );
-        const nameInput = myUtilityFunctions.createElementWithClass(
-            "input",
-            "add-todo-form-name-input"
-        );
-        const dateInput = myUtilityFunctions.createElementWithClass(
-            "input",
-            "add-todo-form-date-input"
-        );
-        const btnContainer = myUtilityFunctions.createElementWithClass(
-            "div",
-            "todo-form-btn-container"
-        );
-        const addBtn = myUtilityFunctions.createElementWithClass(
-            "button",
-            "add-todo-form-btn"
-        );
-        const cancelBtn = myUtilityFunctions.createElementWithClass(
-            "button",
-            "cancel-todo-form-btn"
-        );
-
-        nameInput.placeHolder = "Todo Name";
-        nameInput.type = "text";
-        nameInput.spellcheck = false;
-        dateInput.type = "date";
-        dateInput.value = myUtilityFunctions.formatDate(
-            new Date(),
-            "yyyy-MM-dd"
-        );
-        addBtn.textContent = "Add";
-        cancelBtn.textContent = "Cancel";
-        cancelBtn.addEventListener("click", removeAddTodoForm);
-        inputContainer.append(nameInput, dateInput);
-        btnContainer.append(addBtn, cancelBtn);
-        addTodoContainer.append(inputContainer, btnContainer);
-        todosSection.appendChild(addTodoContainer);
-    }
-
     // Displays username validation error
     function showFormError() {
         if (!isUsernameValidationCorrect()) {
@@ -165,10 +93,6 @@ const UI = (function () {
         loginBtn.classList.add("account-btn");
     }
 
-    function displayAddTodoButton(el) {
-        el.appendChild(createAddTodoBtn());
-    }
-
     // Logs user in
     async function login(e) {
         const formOverlay = document.querySelector(".overlay-form");
@@ -190,11 +114,11 @@ const UI = (function () {
         // If entered username exists, logs in
         const username = usernameInput.value;
         if (await myAccount.doesUsernameExist(username)) {
-            closeForm();
-            switchToAccount(username);
             // Displays todos and add task button
             await myTodos.displayUserTodos(username);
-            displayAddTodoButton(todosSection);
+            switchToAccount(username);
+            myTodos.displayAddTodoButton(todosSection);
+            closeForm();
             formOverlay.classList.add("hidden");
             isLoginPressed = false;
         } else {

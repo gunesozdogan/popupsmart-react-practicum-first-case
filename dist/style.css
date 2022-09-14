@@ -390,10 +390,10 @@ main {
     gap: 1rem;
     font-size: 1.3rem;
     font-weight: 500;
-    min-width: 50rem;
+    min-width: 60rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
-    width: 50%;
+    width: 70%;
 }
 
 .todo-container:hover {
@@ -475,6 +475,9 @@ main {
 
 .todo-content {
     color: var(--text-color);
+    width: 30rem;
+    /* height: 4rem; */
+    word-wrap: break-word;
 }
 
 .add-todo-btn:hover {

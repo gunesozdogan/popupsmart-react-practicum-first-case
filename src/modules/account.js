@@ -79,13 +79,8 @@ const account = (function () {
         });
     };
 
-    const createUserTodo = async function (
-        username,
-        content,
-        isCompleted,
-        date
-    ) {
-        return { content, isCompleted, date };
+    const Todo = function (content, date) {
+        return { content, isCompleted: false, date };
     };
 
     return {
@@ -93,6 +88,7 @@ const account = (function () {
         getUserTodos,
         deleteUserTodo,
         updateUserTodos,
+        Todo,
         switchCompleteUserTodo,
         todos,
         username,

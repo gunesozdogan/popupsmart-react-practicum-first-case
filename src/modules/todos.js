@@ -52,17 +52,102 @@ const todos = (function () {
             "EEE do MMM yyyy"
         );
 
-        divLeft.append(completeBtn, p);
-        divRight.append(editBtn, span);
+        divLeft.append(completeBtn, p, editBtn);
+        divRight.append(span);
         div.append(divLeft, divRight);
 
         return div;
     }
 
+    // Creates input form for adding todo and displays it
+    function displayAddTodoForm() {
+        removeAddTodoBtn();
+        const addTodoContainer = myUtilityFunctions.createElementWithClass(
+            "div",
+            "add-todo-form-container"
+        );
+        const inputContainer = myUtilityFunctions.createElementWithClass(
+            "div",
+            "todo-form-input-container"
+        );
+        const nameInput = myUtilityFunctions.createElementWithClass(
+            "input",
+            "add-todo-form-name-input"
+        );
+        const dateInput = myUtilityFunctions.createElementWithClass(
+            "input",
+            "add-todo-form-date-input"
+        );
+        const btnContainer = myUtilityFunctions.createElementWithClass(
+            "div",
+            "todo-form-btn-container"
+        );
+        const addBtn = myUtilityFunctions.createElementWithClass(
+            "button",
+            "add-todo-form-btn"
+        );
+        const cancelBtn = myUtilityFunctions.createElementWithClass(
+            "button",
+            "cancel-todo-form-btn"
+        );
+
+        nameInput.placeHolder = "Todo Name";
+        nameInput.type = "text";
+        nameInput.spellcheck = false;
+        dateInput.type = "date";
+        dateInput.value = myUtilityFunctions.formatDate(
+            new Date(),
+            "yyyy-MM-dd"
+        );
+        addBtn.textContent = "Add";
+        addBtn.addEventListener("click", addTodo);
+        cancelBtn.textContent = "Cancel";
+        cancelBtn.addEventListener("click", removeAddTodoForm);
+        inputContainer.append(nameInput, dateInput);
+        btnContainer.append(addBtn, cancelBtn);
+        addTodoContainer.append(inputContainer, btnContainer);
+        todosSection.appendChild(addTodoContainer);
+    }
+
+    function removeAddTodoBtn() {
+        const btn = document.querySelector(".add-todo-btn");
+        btn.remove();
+    }
+
+    function removeAddTodoForm() {
+        const form = document.querySelector(".add-todo-form-container");
+        form.remove();
+        displayAddTodoButton(todosSection);
+    }
+
+    // Creates add todo button
+    function createAddTodoBtn() {
+        const btn = utilityFunctions.createElementWithClass(
+            "button",
+            "add-todo-btn"
+        );
+        btn.innerHTML = `<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg 
+                class="add-todo-icon" height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28,14H18V4c0-1.104-0.896-2-2-2s-2,0.896-2,2v10H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h10v10c0,1.104,0.896,2,2,2  s2-0.896,2-2V18h10c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg> Add Todo`;
+        btn.addEventListener("click", displayAddTodoForm);
+        return btn;
+    }
+
+    function displayAddTodoButton(el) {
+        el.appendChild(createAddTodoBtn());
+    }
+
     // Displays todos on the main page
+    // for first login load username is given
+    // when updating todos after creating new one username is not used
     async function displayUserTodos(username) {
         clearTodos();
-        const todos = await myAccount.getUserTodos(username);
+        let todos;
+        if (username) {
+            todos = await myAccount.getUserTodos(username);
+        } else {
+            todos = myAccount.todos;
+        }
+
         todos.forEach(todo => {
             todosSection.appendChild(_createTodoContainer(todo));
         });
@@ -72,6 +157,26 @@ const todos = (function () {
         while (todosSection.firstChild) {
             todosSection.removeChild(todosSection.lastChild);
         }
+    }
+
+    function addTodo() {
+        const todoName = document.querySelector(
+            ".add-todo-form-name-input"
+        ).value;
+        const formattedName = todoName[0].toUpperCase() + todoName.slice(1);
+        const todoDate = document.querySelector(
+            ".add-todo-form-date-input"
+        ).value;
+        const formattedDate = myUtilityFunctions.formatDate(
+            new Date(todoDate),
+            "MM/dd/yyyy"
+        );
+        const newTodo = account.Todo(formattedName, formattedDate);
+
+        myAccount.todos.push(newTodo);
+        displayUserTodos();
+        displayAddTodoButton(todosSection);
+        myAccount.updateUserTodos(myAccount.username, myAccount.todos);
     }
 
     function switchCompleteTodo(e) {
@@ -115,6 +220,8 @@ const todos = (function () {
         clearTodos,
         deleteTodo,
         switchCompleteTodo,
+        displayAddTodoButton,
+        addTodo,
     };
 })();
 
