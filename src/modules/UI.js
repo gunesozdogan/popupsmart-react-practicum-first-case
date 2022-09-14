@@ -45,6 +45,8 @@ const UI = (function () {
     }
 
     function displayLoginForm() {
+        // If already logged in form does not pop up
+        if (!this.classList.contains("login-btn")) return;
         overlay.classList.remove("hidden");
         usernameInput.value = "";
         usernameError.classList.add("hidden");
@@ -55,6 +57,7 @@ const UI = (function () {
         accountBtn.classList.remove("account-btn");
         accountBtn.classList.add("login-btn");
         accountBtn.textContent = "Login";
+        myTodos.clearTodos();
     }
 
     // Displays username validation error

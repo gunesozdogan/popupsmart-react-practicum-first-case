@@ -75,7 +75,7 @@ const todos = (function () {
         }
     }
 
-    return { displayUserTodos, createAddTodoBtn };
+    return { displayUserTodos, createAddTodoBtn, clearTodos };
 })();
 
 export default todos;
