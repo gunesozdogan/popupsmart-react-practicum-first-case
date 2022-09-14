@@ -1,19 +1,25 @@
 :root {
     font-size: 10px;
-    --text-color: #4c586f;
-    --main-bkg-color: #fff;
-    --sec-bkg-color: #eee;
-    --helper-color: #eee;
-    --helper-color-2: #4c586f;
+    --text-color: #293241;
+    --header-text-color: #eee;
+    --bkg-color: #fff;
+    --nav-bkg-color: #f7f7f7;
+    --header-bkg-color: #3d5a80;
+    --form-bkg-color: #f7f7f7;
+    --hover-color: #ebe9e9;
+    --helper-color: rgb(238, 108, 77);
     color: var(--text-color);
 }
 
 :root.dark-theme {
     --text-color: #eee;
-    --main-bkg-color: #121212;
-    --sec-bkg-color: #c3073f;
-    --helper-color: #222;
-    --helper-color-2: #fff;
+    --header-text-color: #fff;
+    --bkg-color: #121212;
+    --nav-bkg-color: #121212;
+    --header-bkg-color: #222;
+    --form-bkg-color: #222;
+    --hover-color: #222;
+    --helper-color: #c3073f;
 }
 
 * {
@@ -35,7 +41,7 @@
 .outer-container {
     display: flex;
     flex-direction: column;
-    background-color: var(--main-bkg-color);
+    background-color: var(--bkg-color);
     min-height: 100vh;
 }
 
@@ -45,15 +51,16 @@ header {
     align-items: center;
     justify-content: space-between;
     min-width: 100vw;
-    height: 10vh;
+    height: 6rem;
     padding: 2rem 4rem;
     padding-right: 0;
-    background-color: var(--helper-color);
+    background-color: var(--header-bkg-color);
+    color: var(--header-text-color);
     z-index: 2000;
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     min-width: 20rem;
 }
 
@@ -63,6 +70,7 @@ h1 {
     min-width: 15rem;
     display: flex;
     justify-content: center;
+    color: var(--header-text-color);
 }
 
 .login-btn,
@@ -75,11 +83,12 @@ h1 {
     color: var(--text-color);
     display: flex;
     align-items: center;
+    color: var(--header-text-color);
 }
 
 .login-btn:hover,
 .account-btn:hover {
-    font-weight: 600;
+    color: #e0fbfc;
 }
 
 .account-section:hover .account-btn + .dropdown-list {
@@ -96,8 +105,8 @@ h1 {
     align-items: center;
     gap: 2rem;
     font-size: 1.2rem;
-    background-color: var(--helper-color);
-    color: var(--text-color);
+    background-color: var(--header-bkg-color);
+    color: var(--header-text-color);
     width: 90%;
     min-width: 90%;
     padding: 2rem;
@@ -107,7 +116,7 @@ h1 {
 .dropdown-arrow-icon {
     height: 2rem;
     width: 2rem;
-    fill: var(--text-color);
+    fill: var(--header-text-color);
 }
 
 .dropdown-list-item {
@@ -134,6 +143,7 @@ h1 {
 .logout-btn {
     border: none;
     font-size: 1.1rem;
+    font-weight: 500;
     display: Flex;
     gap: 0.6rem;
     align-items: center;
@@ -141,12 +151,22 @@ h1 {
     width: 100%;
     min-width: 100%;
     background-color: transparent;
-    color: var(--text-color);
+    color: var(--header-text-color);
+}
+
+.theme-mode-switch-btn:hover .theme-mode-icon {
+    filter: invert(45%) sepia(76%) saturate(3199%) hue-rotate(330deg)
+        brightness(98%) contrast(90%);
+}
+
+:root.dark-theme .theme-mode-switch-btn:hover .theme-mode-icon {
+    filter: invert(90%) sepia(86%) saturate(4939%) hue-rotate(334deg)
+        brightness(102%) contrast(101%);
 }
 
 .theme-mode-switch-btn:hover,
 .logout-btn:hover {
-    font-weight: 600;
+    color: var(--helper-color);
 }
 
 /* Login Section */
@@ -154,12 +174,12 @@ h1 {
     display: flex;
     flex-direction: column;
     width: 20%;
-    height: 40%;
+    height: 45%;
     gap: 2rem;
-    border: 2px solid var(--helper-color-2);
+    border: 1px solid var(--text-color);
     padding: 2rem;
     border-radius: 1rem;
-    background-color: var(--helper-color);
+    background-color: var(--form-bkg-color);
     position: relative;
     min-width: 30rem;
 }
@@ -168,8 +188,8 @@ h1 {
     height: 2rem;
     width: 2rem;
     position: absolute;
-    left: 100%;
-    top: 0%;
+    left: 99%;
+    top: 1%;
     transform: translate(-110%, 10%);
     background-color: transparent;
     border: none;
@@ -177,7 +197,11 @@ h1 {
 }
 
 .form-close-btn svg {
-    fill: var(--helper-color-2);
+    fill: var(--header-bkg-color);
+}
+
+:root.dark-theme .form-close-btn svg {
+    fill: var(--text-color);
 }
 
 .username-input {
@@ -191,13 +215,17 @@ h1 {
 }
 
 .username-error {
-    color: red;
+    color: #e90f50;
+}
+
+.sign-up-section {
+    color: var(--text-color-color);
 }
 
 .login-form h2 {
     margin-bottom: 2rem;
     font-size: 2rem;
-    color: var(--helper-color-2);
+    color: var(--header-bkg-color);
 }
 
 :root.dark-theme .login-form h2 {
@@ -205,7 +233,7 @@ h1 {
 }
 
 .form-login-btn {
-    background-color: var(--helper-color-2);
+    background-color: var(--header-bkg-color);
     border: none;
     border-radius: 1rem;
     width: 30%;
@@ -215,8 +243,12 @@ h1 {
     cursor: pointer;
 }
 
+.form-login-btn:hover {
+    background-color: #5174a3;
+}
+
 :root.dark-theme .form-login-btn {
-    background-color: var(--sec-bkg-color);
+    background-color: var(--helper-color);
     color: #eee;
 }
 
@@ -236,13 +268,17 @@ h1 {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: var(--helper-color-2);
+    color: var(--helper-color);
     font-weight: 600;
+}
+
+.sign-up-btn:hover {
+    color: rgb(214, 54, 14);
 }
 
 :root.dark-theme .sign-up-btn {
     color: #fff;
-    color: var(--sec-bkg-color);
+    color: var(--helper-color);
 }
 
 :root.dark-theme .sign-up-btn:hover {
@@ -259,8 +295,8 @@ main {
 .nav {
     display: flex;
     flex-direction: column;
-    background-color: var(--main-bkg-color);
-    border-right: 3px solid var(--helper-color);
+    background-color: var(--nav-bkg-color);
+
     width: 15vw;
     min-width: 23rem;
     color: var(--text-color);
@@ -268,6 +304,10 @@ main {
     gap: 2rem;
     font-size: 1.5rem;
     z-index: 1000;
+}
+
+:root.dark-theme .nav {
+    border-right: 5px solid var(--header-bkg-color);
 }
 
 .nav-heading,
@@ -279,28 +319,28 @@ main {
     display: flex;
     justify-content: left;
     align-items: center;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .projects-heading {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     padding-left: 1rem;
     cursor: auto;
 }
 
 .nav-heading {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .nav-heading:hover {
-    background-color: var(--sec-bkg-color);
+    background-color: var(--hover-color);
 }
 
 .nav-icon {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     fill: var(--text-color);
 }
 
@@ -311,7 +351,7 @@ main {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.5rem;
     margin: 0 auto;
 }
 
@@ -319,17 +359,17 @@ main {
 .add-todo-btn {
     display: flex;
     justify-content: space-between;
-    gap: 3rem;
-    font-size: 1.4rem;
-    font-weight: 600;
+    gap: 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
     min-width: 50rem;
-    padding: 1.5rem 3rem;
+    padding: 1rem 2rem;
     border-radius: 1rem;
     width: 50%;
 }
 
 .todo-container:hover {
-    background-color: var(--sec-bkg-color);
+    background-color: var(--hover-color);
 }
 
 .todo-container-left {
@@ -343,21 +383,34 @@ main {
     /* margin-right: 15rem; */
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
+}
+
+.todo-container:hover .todo-edit {
+    visibility: visible;
 }
 
 .todo-edit {
     height: 2rem;
-    width: 4rem;
+    width: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--helper-color-2);
-    color: #fff;
+    color: var(--helper-color);
+    background-color: transparent;
     border: none;
-    border-radius: 1rem;
+    border-radius: 0.6rem;
     padding: 1rem 3rem;
     cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 500;
+    visibility: hidden;
+}
+
+.todo-edit:hover {
+    background-color: var(--helper-color);
+    color: #fff;
 }
 
 .todo-isCompleted {
@@ -366,11 +419,11 @@ main {
     width: 2rem;
     background-color: transparent;
     cursor: pointer;
-    border: 1.5px solid var(--helper-color-2);
+    border: 2px solid var(--helper-color);
 }
 
 .todo-isCompleted:hover {
-    background-color: var(--helper-color-2);
+    background-color: var(--helper-color);
 }
 
 .add-todo-btn {
@@ -381,20 +434,28 @@ main {
     justify-content: left;
     background-color: transparent;
     border: none;
-    padding: 2rem 3rem;
-    color: var(--helper-color-2);
+    padding: 2rem 2rem;
+    color: var(--helper-color);
     font-weight: 600;
     cursor: pointer;
 }
 
+/* :root.dark-theme .add-todo-btn {
+    color: #4e4e50;
+} */
+
 .add-todo-icon {
     height: 2rem;
     width: 2rem;
-    fill: var(--helper-color-2);
+    fill: var(--helper-color);
 }
 
+/* :root.dark-theme .add-todo-icon {
+    fill: #4e4e50;
+} */
+
 .add-todo-btn:hover {
-    background-color: var(--sec-bkg-color);
+    background-color: var(--hover-color);
 }
 
 /* Projects Section */
@@ -420,7 +481,7 @@ main {
 }
 
 .add-project-btn:hover {
-    background-color: var(--sec-bkg-color);
+    background-color: var(--header-bkg-color);
 }
 
 .overlay {

@@ -11,6 +11,12 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="style.css" />
         <script src="main.js" defer></script>
     </head>
@@ -48,7 +54,7 @@
                 <div class="username-error hidden">
                     Username does not exist!
                 </div>
-                <div>
+                <div class="sign-up-section">
                     Don't have an account?<button
                         type="button"
                         class="sign-up-btn"
@@ -60,7 +66,7 @@
         </div>
         <div class="outer-container">
             <header class="header">
-                <h1>Todo App</h1>
+                <h1>TO-DO</h1>
                 <div class="account-section">
                     <button class="login-btn header-btn">Login</button>
                     <ul class="dropdown-list">
@@ -80,7 +86,7 @@
                                     class="dropdown-icon"
                                     fill="none"
                                     height="24"
-                                    stroke-width="1.5"
+                                    stroke-width="2.5"
                                     viewBox="0 0 24 24"
                                     width="24"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -96,9 +102,8 @@
                                         stroke="currentColor"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
-                                    />
-                                </svg>
-                                Log out
+                                    /></svg
+                                ><span class="logout-text">Log out</span>
                             </button>
                         </li>
                     </ul>
@@ -107,8 +112,8 @@
             <main>
                 <nav class="nav">
                     <div class="inbox-section nav-section">
-                        <span class="inbox-heading nav-heading"
-                            ><?xml version="1.0" ?><svg
+                        <span class="inbox-heading nav-heading">
+                            <?xml version="1.0" ?><svg
                                 class="inbox-icon nav-icon"
                                 id="Layer_2"
                                 style="enable-background: new 0 0 32 32"
