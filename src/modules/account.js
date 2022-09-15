@@ -102,7 +102,7 @@ const account = (function () {
         for (let i = 0; i < userTodos.length; i++) {
             if (userTodos[i].content === content) {
                 userTodos[i].content = updatedContent;
-                userTodos[i].content = updatedDate;
+                userTodos[i].date = updatedDate;
                 break;
             }
         }

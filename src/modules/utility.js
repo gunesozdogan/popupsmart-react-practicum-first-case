@@ -5,16 +5,19 @@ const utilityFunctions = (function () {
         return format(new Date(date), type);
     }
 
-    function createElementWithClass(el, className) {
+    function createElementWithClass(el, properties) {
         const element = document.createElement(el);
+        // Sets the properties of element in properties object
+        for (let [key, val] of Object.entries(properties)) {
+            if (key === 'event')
+                element.addEventListener(
+                    properties.event.type,
+                    properties.event.functionName
+                );
+            else element[key] = val;
+        }
 
-        if (typeof className !== 'string') element.classList.add(...className);
-        else element.classList.add(className);
         return element;
-    }
-
-    function convertToDate(dateStr) {
-        return parseISO(dateStr);
     }
 
     // Displays input validation error
@@ -38,7 +41,6 @@ const utilityFunctions = (function () {
     return {
         formatDate,
         createElementWithClass,
-        convertToDate,
         isInputValidationCorrect,
         showInputValidationError,
     };

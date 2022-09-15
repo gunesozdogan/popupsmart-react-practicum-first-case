@@ -94,8 +94,8 @@ const UI = (function () {
         isLoginPressed = true;
 
         // If username is not in right form
-        if (!myUtilityFunctions.isInputValidationCorrect(usernameInput)) {
-            myUtilityFunctions.showInputValidationError(usernameInput);
+        if (!myUtilityFunctions.isInputValidationCorrect.bind(usernameInput)) {
+            myUtilityFunctions.showInputValidationError.bind(usernameInput);
             e.preventDefault();
             isLoginPressed = false;
             return;
