@@ -26,7 +26,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
 
     /* no text focus */
     -webkit-touch-callout: none; /* iOS Safari */
@@ -50,13 +50,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-width: 100vw;
+    min-width: 95rem;
     height: 6rem;
     padding: 2rem 4rem;
     padding-right: 0;
     background-color: var(--header-bkg-color);
     color: var(--header-text-color);
-    z-index: 2000;
 }
 
 h1 {
@@ -170,17 +169,18 @@ h1 {
 }
 
 /* Login Section */
-.login-form {
+.form {
     display: flex;
     flex-direction: column;
-    width: 20%;
-    height: 35%;
+    justify-content: space-between;
+    width: 35rem;
+    height: 30rem;
     gap: 2rem;
     border: 1px solid var(--text-color);
     padding: 2rem;
     border-radius: 1rem;
     background-color: var(--form-bkg-color);
-    position: relative;
+    position: fixed;
     min-width: 30rem;
     margin-bottom: 10rem;
 }
@@ -225,6 +225,7 @@ h1 {
 
 .sign-up-section {
     color: var(--text-color-color);
+    justify-self: flex-end;
 }
 
 .login-form h2 {
@@ -308,7 +309,6 @@ main {
     padding: 3rem;
     gap: 2rem;
     font-size: 1.5rem;
-    z-index: 1000;
 }
 
 :root.dark-theme .nav {
@@ -325,38 +325,6 @@ main {
     align-items: center;
     font-weight: 500;
 }
-
-/* .projects-heading {
-    font-size: 2rem;
-    font-weight: 500;
-    padding-left: 1rem;
-    cursor: auto;
-} */
-
-/* .projects-section {
-    display: flex;
-    flex-direction: column;
-} */
-
-/* .add-project-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.3rem;
-    display: flex;
-    justify-content: left;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
-    color: var(--text-color);
-} */
-
-/* .add-project-btn:hover {
-    background-color: var(--header-bkg-color);
-} */
 
 .nav-heading {
     display: flex;
@@ -375,12 +343,16 @@ main {
 
 /* Todos Section */
 .todos-section {
-    width: 50%;
+    width: 100%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
     margin: 0 auto;
+    margin-right: 30rem;
+    margin-left: 5rem;
+    min-width: 60rem;
 }
 
 .todo-container,
@@ -393,7 +365,7 @@ main {
     min-width: 60rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
-    width: 70%;
+    width: 40%;
 }
 
 .todo-container:hover {
@@ -454,14 +426,15 @@ main {
 }
 
 .add-todo-btn {
-    width: 50%;
+    width: 40%;
+    min-width: 60rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: left;
     background-color: transparent;
     border: none;
-    padding: 2rem 2rem;
+    padding: 2rem;
     color: var(--helper-color);
     font-weight: 600;
     cursor: pointer;
@@ -476,7 +449,6 @@ main {
 .todo-content {
     color: var(--text-color);
     width: 30rem;
-    /* height: 4rem; */
     word-wrap: break-word;
 }
 
@@ -486,8 +458,8 @@ main {
 
 /* Add todo form section */
 .add-todo-form-container {
-    width: 50%;
-    min-width: 50rem;
+    width: 40%;
+    min-width: 60rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -503,8 +475,8 @@ main {
 .add-todo-form-date-input {
     padding: 1.5rem;
     height: 3rem;
-    border: 1px solid var(--text-color);
-    font-family: "Roboto", sans-serif;
+    border: 1px solid #4e4e50;
+    font-family: 'Roboto', sans-serif;
     color: var(--text-color);
     font-weight: 500;
     font-size: 1.4rem;
@@ -548,8 +520,8 @@ main {
     width: 100%;
 }
 
-.add-todo-form-btn,
-.cancel-todo-form-btn {
+.form-btn-add-edit,
+.form-btn-cancel {
     flex: 1;
     border-radius: 0.7rem;
     border: 1px solid var(--text-color);
@@ -558,35 +530,81 @@ main {
     font-weight: 500;
 }
 
-:root.dark-theme .add-todo-form-btn,
-:root.dark-theme .cancel-todo-form-btn {
+:root.dark-theme .form-btn-add-edit,
+:root.dark-theme .form-btn-cancel {
     border-color: #222;
 }
 
-.add-todo-form-btn {
+.form-btn-add-edit {
     background-color: var(--helper-color);
     color: #fff;
 }
 
-.add-todo-form-btn:hover {
+.form-btn-add-edit:hover {
     background-color: rgb(255, 126, 94);
 }
 
-:root.dark-theme .add-todo-form-btn:hover {
+:root.dark-theme .form-btn-add-edit:hover {
     background-color: #e90f50;
 }
 
-.cancel-todo-form-btn {
+.form-btn-cancel {
     background-color: var(--header-bkg-color);
     color: var(--header-text-color);
 }
 
-.cancel-todo-form-btn:hover {
+.form-btn-cancel:hover {
     background-color: #5174a3;
 }
 
-:root.dark-theme .cancel-todo-form-btn:hover {
+:root.dark-theme .form-btn-cancel:hover {
     background-color: #333;
+}
+
+/* Edit todo form */
+.edit-todo-form {
+    height: 18rem;
+    margin-bottom: 30rem;
+    border-color: #4e4e50;
+}
+
+.edit-todo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.edit-todo-content-input {
+    margin-bottom: -1.5rem;
+}
+
+.edit-todo-content-input,
+.edit-todo-date-input {
+    padding: 0.6rem 1rem;
+    height: 3.5rem;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 1rem;
+    border: 1px solid #4e5e50;
+    font-weight: 500;
+}
+
+:root.dark-theme .edit-todo-content-input,
+:root.dark-theme .edit-todo-date-input {
+    color: #222;
+}
+
+.edit-todo-content-input:focus,
+.edit-todo-date-input:focus {
+    outline: none;
+}
+
+:root.dark-theme .cancel-todo-form-btn {
+    background-color: #444;
 }
 
 /* Overlay settings for forms */
