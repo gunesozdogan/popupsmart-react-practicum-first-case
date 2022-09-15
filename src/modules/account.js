@@ -6,7 +6,7 @@ const account = (function () {
         try {
             const response = await fetch(
                 `https://631dbfab789612cd07afa22a.mockapi.io/todos/${username}`,
-                { mode: "cors" }
+                { mode: 'cors' }
             );
 
             return response.status !== 500 ? true : false;
@@ -21,11 +21,11 @@ const account = (function () {
             const response = await fetch(
                 `https://631dbfab789612cd07afa22a.mockapi.io/todos/${username}`,
                 {
-                    method: "GET",
+                    method: 'GET',
                     headers: {
-                        "Content-type": "application/json; charset=UTF-8",
+                        'Content-type': 'application/json; charset=UTF-8',
                     },
-                    mode: "cors",
+                    mode: 'cors',
                 }
             );
 
@@ -46,6 +46,7 @@ const account = (function () {
         for (let i = 0; i < userTodos.length; i++) {
             if (userTodos[i].content === todoContent) {
                 userTodos.splice(i, 1);
+                break;
             }
         }
 
@@ -58,6 +59,7 @@ const account = (function () {
                 userTodos[i].isCompleted = userTodos[i].isCompleted
                     ? false
                     : true;
+                break;
             }
         }
         return userTodos;
@@ -70,17 +72,40 @@ const account = (function () {
         };
 
         fetch(`https://631dbfab789612cd07afa22a.mockapi.io/todos/${username}`, {
-            method: "PUT",
+            method: 'PUT',
             headers: {
-                "Content-type": "application/json; charset=UTF-8",
+                'Content-type': 'application/json; charset=UTF-8',
             },
-            mode: "cors",
+            mode: 'cors',
             body: JSON.stringify(userData),
         });
     };
 
+    const getTodoDate = function (content, userTodos) {
+        for (let i = 0; i < userTodos.length; i++) {
+            if (userTodos[i].content === content) {
+                return userTodos[i].date;
+            }
+        }
+    };
+
     const Todo = function (content, date) {
         return { content, isCompleted: false, date };
+    };
+
+    const editUserTodo = function (
+        userTodos,
+        content,
+        updatedContent,
+        updatedDate
+    ) {
+        for (let i = 0; i < userTodos.length; i++) {
+            if (userTodos[i].content === content) {
+                userTodos[i].content = updatedContent;
+                userTodos[i].content = updatedDate;
+                break;
+            }
+        }
     };
 
     return {
@@ -88,8 +113,10 @@ const account = (function () {
         getUserTodos,
         deleteUserTodo,
         updateUserTodos,
-        Todo,
         switchCompleteUserTodo,
+        editUserTodo,
+        getTodoDate,
+        Todo,
         todos,
         username,
     };
