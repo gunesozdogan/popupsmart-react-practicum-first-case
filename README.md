@@ -10,6 +10,7 @@
 -   Date-fns is used for date operations.
 -   Mock API is used for storing, reading, adding, deleting and editing todos and also for creating new accounts.
 -   Local storage is used to save account and its properties like theme color preference and todos.
+-   Async/await is used with fetch API. 
 
 # Functionalities
 
