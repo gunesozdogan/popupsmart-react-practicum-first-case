@@ -1,15 +1,15 @@
 import todos from './todos.js';
 import account from './account.js';
 import utilityFunctions from './utility.js';
+import localStorageModule from './localStorage.js';
 
 const UI = (function () {
     // Modules
     const myAccount = account;
+    const myLocalStorage = localStorageModule;
     const myTodos = todos;
     const myUtilityFunctions = utilityFunctions;
-    const themeColorSwitchBtn = document.querySelector(
-        '.theme-mode-switch-btn'
-    );
+    const themeModeSwitchBtn = document.querySelector('.theme-mode-switch-btn');
     const root = document.querySelector(':root');
     const loginBtn = document.querySelector('.login-btn');
     const logOutBtn = document.querySelector('.logout-btn');
@@ -23,7 +23,7 @@ const UI = (function () {
     const loginForm = document.querySelector('.login-form');
     let isLoginPressed = false;
 
-    themeColorSwitchBtn.addEventListener('click', switchThemeMode);
+    themeModeSwitchBtn.addEventListener('click', switchThemeMode);
     loginBtn.addEventListener('click', displayLoginForm);
     logOutBtn.addEventListener('click', logout);
     formLoginBtn.addEventListener('click', login);
@@ -36,20 +36,39 @@ const UI = (function () {
     );
     formCloseBtn.addEventListener('click', closeForm);
 
-    // Changes theme color and theme icon
-    function switchThemeMode() {
-        root.classList.toggle('dark-theme');
-        const icon = this.querySelector('img');
+    // initialize account if account is saved to localstorage
+    initializeAccount();
 
-        if (this.classList.contains('dark-theme')) {
-            icon.src = 'icons/lightTheme.svg';
-            this.classList.remove('dark-theme');
-            themeName.textContent = 'Dark Mode';
-        } else {
+    // Changes theme color and theme icon
+    function switchThemeMode(darkMode) {
+        const icon = themeModeSwitchBtn.querySelector('img');
+        // for initializing preference
+        if (darkMode === true) {
+            root.classList.add('dark-theme');
             icon.src = 'icons/darkTheme.svg';
-            this.classList.add('dark-theme');
+            themeModeSwitchBtn.classList.add('dark-theme');
             themeName.textContent = 'Light Mode';
+        } else if (darkMode === false) {
+            root.classList.remove('dark-theme');
+            icon.src = 'icons/lightTheme.svg';
+            themeModeSwitchBtn.classList.remove('dark-theme');
+            themeName.textContent = 'Dark Mode';
+            // Switch
+        } else {
+            root.classList.toggle('dark-theme');
+            if (themeModeSwitchBtn.classList.contains('dark-theme')) {
+                icon.src = 'icons/lightTheme.svg';
+                themeModeSwitchBtn.classList.remove('dark-theme');
+                themeName.textContent = 'Dark Mode';
+                myAccount.darkMode = false;
+            } else {
+                icon.src = 'icons/darkTheme.svg';
+                themeModeSwitchBtn.classList.add('dark-theme');
+                themeName.textContent = 'Light Mode';
+                myAccount.darkMode = true;
+            }
         }
+        myLocalStorage.saveAccount(myAccount);
     }
 
     function displayLoginForm() {
@@ -67,6 +86,7 @@ const UI = (function () {
         accountBtn.classList.add('login-btn');
         accountBtn.textContent = 'Login';
         myTodos.clearTodos();
+        localStorage.clear();
     }
 
     function closeForm() {
@@ -101,16 +121,19 @@ const UI = (function () {
             return;
         }
         formOverlay.classList.remove('hidden');
-        // If entered username exists, logs in
         const username = usernameInput.value;
-        if (await myAccount.doesUsernameExist(username)) {
+        const userTodos = await myAccount.getUserTodos(username);
+
+        // If entered username exists, logs in
+        if (userTodos) {
             // Displays todos and add task button
-            await myTodos.displayUserTodos(username);
+            await myTodos.displayUserTodos(userTodos);
             switchToAccount(username);
             myTodos.displayAddTodoButton(todosSection);
             closeForm();
             formOverlay.classList.add('hidden');
             isLoginPressed = false;
+            myLocalStorage.saveAccount(myAccount);
         } else {
             formOverlay.classList.add('hidden');
             // Else displays error message
@@ -119,7 +142,16 @@ const UI = (function () {
         }
     }
 
-    return {};
+    function initializeAccount() {
+        if (myLocalStorage.getAccount()) {
+            myLocalStorage.initializeAccountProperties(myAccount);
+            myTodos.displayUserTodos(myAccount.todos);
+            switchToAccount(myAccount.username);
+            myTodos.displayAddTodoButton(todosSection);
+            switchThemeMode(account.darkMode);
+        } else {
+        }
+    }
 })();
 
 export default UI;

@@ -1,14 +1,20 @@
 import account from './account.js';
 import UI from './UI.js';
 import utilityFunctions from './utility.js';
+import localStorageModule from './localStorage.js';
 
 const todos = (function () {
     const myAccount = account;
     const myUtilityFunctions = utilityFunctions;
     const todosSection = document.querySelector('.todos-section');
+    const myLocalStorage = localStorageModule;
+
+    // initializes myAccount module if account is saved to localstorage
+    if (myLocalStorage.getAccount())
+        myLocalStorage.initializeAccountProperties(myAccount);
 
     /////////////////////////////////////////////////////////////////////////////// CREATING TODO ELEMENTS
-    // creates elements to display each todo
+    // Creates elements to display each todo
     function _createTodoContainer(todo) {
         const div = myUtilityFunctions.createElementWithClass('div', {
             className: 'todo-container',
@@ -147,9 +153,15 @@ const todos = (function () {
 
         // adds todo to array than pushes it to mock API
         myAccount.todos.push(newTodo);
-        displayUserTodos();
+        displayUserTodos(myAccount.todos);
         displayAddTodoButton(todosSection);
-        myAccount.updateUserTodos(myAccount.username, myAccount.todos);
+        myAccount.updateUserTodos(
+            myAccount.username,
+            myAccount.todos,
+            myAccount.id
+        );
+        // saves to localstorage
+        myLocalStorage.saveAccount(myAccount);
     }
     // Creates input form for adding todo and displays it
     function displayAddTodoForm() {
@@ -271,9 +283,12 @@ const todos = (function () {
                 : 'line-through';
 
         myAccount.switchCompleteUserTodo(userTodos, todoContent);
-        myAccount.updateUserTodos(username, userTodos);
+        myAccount.updateUserTodos(username, userTodos, myAccount.id);
+        // saves to localstorage
+        myLocalStorage.saveAccount(myAccount);
     }
 
+    // gets the todo content from the container element's classname
     function _getTodoContent() {
         const editTodoContainer = document.querySelector(
             '.edit-todo-container'
@@ -310,12 +325,18 @@ const todos = (function () {
             updatedContent,
             updatedDate
         );
-        displayUserTodos();
+        displayUserTodos(myAccount.todos);
         removeEditTodoForm();
         displayAddTodoButton(todosSection);
 
         // pushes todos to mock API
-        myAccount.updateUserTodos(myAccount.username, myAccount.todos);
+        myAccount.updateUserTodos(
+            myAccount.username,
+            myAccount.todos,
+            myAccount.id
+        );
+        // saves to localstorage
+        myLocalStorage.saveAccount(myAccount);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -329,23 +350,14 @@ const todos = (function () {
 
         todoContainer.remove();
         myAccount.deleteUserTodo(userTodos, todoContent);
-        myAccount.updateUserTodos(username, userTodos);
+        myAccount.updateUserTodos(username, userTodos, myAccount.id);
+        myLocalStorage.saveAccount(myAccount);
     }
 
     /////////////////////////////////////////////////////////////////////////////
     // DISPLAY TODOS
-    // Displays todos on the main page
-    // for first login load username is given
-    // when updating todos after creating new one username is not used
-    async function displayUserTodos(username) {
+    async function displayUserTodos(todos) {
         clearTodos();
-        let todos;
-        if (username) {
-            todos = await myAccount.getUserTodos(username);
-        } else {
-            todos = myAccount.todos;
-        }
-
         todos.forEach((todo) => {
             todosSection.appendChild(_createTodoContainer(todo));
         });
