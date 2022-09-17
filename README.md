@@ -24,8 +24,8 @@
 
 -   By default there are 3 accounts which are;
 
-1 - John
-2 - Jane
+1 - John  
+2 - Jane  
 3 - Rick
 
 -   To login with these accounts click on the login button on the top right corner. Then enter one of these accounts to display todos of these accounts.
@@ -38,7 +38,7 @@
 -   To edit a todo click on the edit button on todo element.
 -   To change theme color and logout use dropdown list on the top right corner.
 
-<img src="dist/img/ss1.png">
-<img src="dist/img/ss2.png">
-<img src="dist/img/ss3.png">
-<img src="dist/img/ss4.png">
+<img src="dist/icons/ss1.png">
+<img src="dist/icons/ss2.png">
+<img src="dist/icons/ss3.png">
+<img src="dist/icons/ss4.png">
