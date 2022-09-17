@@ -29,6 +29,8 @@ const UI = (function () {
     );
     const signupFormOverlay = document.querySelector('.signup-overlay-form');
     const signupFormError = document.querySelector('.signup-username-error');
+    const inboxBtn = document.querySelector('.inbox-heading');
+
     let isLoginPressed = false;
 
     themeModeSwitchBtn.addEventListener('click', switchThemeMode);
@@ -90,7 +92,7 @@ const UI = (function () {
 
     function displayLoginForm() {
         // If already logged in form does not pop up
-        if (!this.classList.contains('login-btn')) return;
+        if (!loginBtn.classList.contains('login-btn')) return;
         overlay.classList.remove('hidden');
         loginForm.classList.remove('hidden');
         usernameInput.value = '';
@@ -113,6 +115,7 @@ const UI = (function () {
         accountBtn.textContent = 'Login';
         myTodos.clearTodos();
         localStorage.clear();
+        inboxBtn.classList.remove('clicked');
     }
 
     function closeForm() {
@@ -141,7 +144,7 @@ const UI = (function () {
         isLoginPressed = true;
 
         // If username is not in right form
-        if (!myUtilityFunctions.isInputValidationCorrect(usernameInput)) {
+        if (!myUtilityFunctions.isValid(usernameInput)) {
             myUtilityFunctions.showInputValidationError(usernameInput);
             e.preventDefault();
             isLoginPressed = false;
@@ -157,7 +160,7 @@ const UI = (function () {
             myAccount.setAccountProperties(userData);
             // Displays todos and add task button
             await myTodos.displayUserTodos(userTodos);
-
+            inboxBtn.classList.add('clicked');
             switchToAccount(username);
             myTodos.displayAddTodoButton(todosSection);
             closeForm();
@@ -175,7 +178,7 @@ const UI = (function () {
     async function signup(e) {
         const username = signupUsernameInput.value;
 
-        if (!myUtilityFunctions.isInputValidationCorrect(signupUsernameInput)) {
+        if (!myUtilityFunctions.isValid(signupUsernameInput)) {
             myUtilityFunctions.showInputValidationError(signupUsernameInput);
             e.preventDefault();
             return;
@@ -210,6 +213,9 @@ const UI = (function () {
             switchToAccount(myAccount.username);
             myTodos.displayAddTodoButton(todosSection);
             switchThemeMode(account.darkMode);
+            inboxBtn.classList.add('clicked');
+        } else {
+            displayLoginForm();
         }
     }
 })();

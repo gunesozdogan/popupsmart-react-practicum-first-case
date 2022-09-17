@@ -133,7 +133,7 @@ const todos = (function () {
     function addTodo(e) {
         // If todo name is less than 3 characters returns
         const nameInput = document.querySelector('.add-todo-form-name-input');
-        if (!myUtilityFunctions.isInputValidationCorrect(nameInput)) {
+        if (!myUtilityFunctions.isValid(nameInput)) {
             myUtilityFunctions.showInputValidationError(nameInput);
             e.preventDefault();
             return;
@@ -304,7 +304,7 @@ const todos = (function () {
         const todoInput = document.querySelector('.edit-todo-content-input');
 
         // If edited todo content is less than 3 characters prevent
-        if (!myUtilityFunctions.isInputValidationCorrect(todoInput)) {
+        if (!myUtilityFunctions.isValid(todoInput)) {
             myUtilityFunctions.showInputValidationError(todoInput);
             e.preventDefault();
             return;

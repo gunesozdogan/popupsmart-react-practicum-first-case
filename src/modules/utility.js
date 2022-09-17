@@ -1,4 +1,4 @@
-import { format, compareAsc, toDate, parseISO } from 'date-fns';
+import { format, compareAsc, toDate, parseISO, formatDistance } from 'date-fns';
 
 const utilityFunctions = (function () {
     function formatDate(date, type) {
@@ -22,9 +22,9 @@ const utilityFunctions = (function () {
 
     // Displays input validation error
     function showInputValidationError(el) {
-        if (!isInputValidationCorrect(el)) {
+        if (!isValid(el)) {
             el.setCustomValidity(
-                `This input must be at least ${el.minLength} characters!`
+                `This input must be at least ${el.minLength} characters and cannot include spaces!`
             );
             el.reportValidity();
         } else {
@@ -33,15 +33,16 @@ const utilityFunctions = (function () {
     }
 
     // Checks the input's validation
-    function isInputValidationCorrect(el) {
-        if (el.validity.tooShort || el.value === '') {
+    function isValid(el) {
+        if (el.validity.tooShort || el.value === '' || el.value.includes(' ')) {
             return false;
         } else return true;
     }
+
     return {
         formatDate,
         createElementWithClass,
-        isInputValidationCorrect,
+        isValid,
         showInputValidationError,
     };
 })();
