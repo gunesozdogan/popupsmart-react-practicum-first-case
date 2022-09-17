@@ -185,7 +185,7 @@ h1 {
     margin-bottom: 10rem;
 }
 
-:root.dark-theme .login-form {
+:root.dark-theme .form {
     border-color: gray;
 }
 
@@ -209,18 +209,23 @@ h1 {
     fill: var(--text-color);
 }
 
-.username-input {
+.username-input,
+.signup-username-input {
     padding: 1rem;
     border-radius: 0.6rem;
     border: 1px solid rgb(143, 143, 143);
 }
 
-.username-input:focus {
+.username-input:focus,
+.signup-username-input:focus {
     outline: none;
 }
 
-.username-error {
+.username-error,
+.signup-username-error {
     color: #e90f50;
+    align-self: center;
+    font-size: 1.2rem;
 }
 
 .sign-up-section {
@@ -228,17 +233,20 @@ h1 {
     justify-self: flex-end;
 }
 
-.login-form h2 {
+.login-form h2,
+.signup-header {
     margin-bottom: 2rem;
     font-size: 2rem;
     color: var(--header-bkg-color);
 }
 
-:root.dark-theme .login-form h2 {
+:root.dark-theme .login-form h2,
+:root.dark-theme .signup-header {
     color: #eee;
 }
 
-.form-login-btn {
+.form-login-btn,
+.form-signup-btn {
     background-color: var(--header-bkg-color);
     border: none;
     border-radius: 1rem;
@@ -249,16 +257,23 @@ h1 {
     cursor: pointer;
 }
 
-.form-login-btn:hover {
+.form-signup-btn {
+    margin-bottom: 3rem;
+}
+
+.form-login-btn:hover,
+.form-signup-btn:hover {
     background-color: #5174a3;
 }
 
-:root.dark-theme .form-login-btn {
+:root.dark-theme .form-login-btn,
+:root.dark-theme .form-signup-btn {
     background-color: var(--helper-color);
     color: #eee;
 }
 
-:root.dark-theme .form-login-btn:hover {
+:root.dark-theme .form-login-btn:hover,
+:root.dark-theme .form-signup-btn:hover {
     background-color: #e90f50;
 }
 

@@ -15,7 +15,6 @@ const localStorageModule = (function () {
         account.todos = data.todos;
         account.id = data.id;
         account.darkMode = data.darkMode;
-        console.log(account.darkMode);
     }
 
     function getAccount() {

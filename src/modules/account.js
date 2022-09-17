@@ -3,7 +3,18 @@ const account = (function () {
     let username;
     let id;
     let darkMode = false;
-    const getUserTodos = async function (username) {
+    const setAccountProperties = async function (data) {
+        if (data) {
+            this.todos = data.todos;
+            this.username = data.username;
+            this.id = data.id;
+            return data.todos;
+        } else {
+            this.todos = [];
+        }
+    };
+
+    const getUserData = async function (username) {
         try {
             const response = await fetch(
                 `https://632498066f7a75f8b795c5fa.mockapi.io/todos?username=${username}`,
@@ -19,11 +30,8 @@ const account = (function () {
             // because mock api filter returns array
             const dataArr = await response.json();
             const data = dataArr[0];
-            this.todos = data.todos;
-            this.username = data.username;
-            this.id = data.id;
 
-            return data.todos;
+            return data;
         } catch (error) {
             console.log(error);
         }
@@ -32,12 +40,27 @@ const account = (function () {
     const updateUserTodos = function (username, userTodos, userID) {
         const userData = {
             username,
-            id: userID,
             todos: userTodos,
         };
 
         fetch(`https://632498066f7a75f8b795c5fa.mockapi.io/todos/${userID}`, {
             method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            mode: 'cors',
+            body: JSON.stringify(userData),
+        });
+    };
+
+    const addNewAccount = async function (username) {
+        const userData = {
+            username,
+            todos: [],
+        };
+
+        await fetch(`https://632498066f7a75f8b795c5fa.mockapi.io/todos`, {
+            method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -97,12 +120,14 @@ const account = (function () {
     };
 
     return {
-        getUserTodos,
+        setAccountProperties,
+        getUserData,
         deleteUserTodo,
         updateUserTodos,
         switchCompleteUserTodo,
         editUserTodo,
         getTodoDate,
+        addNewAccount,
         Todo,
         todos,
         username,

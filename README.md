@@ -2,7 +2,7 @@
 
 [
 {
-"id": "John",
+"username": "John",
 "todos": [
 {
 "content": "Go for running",
@@ -17,7 +17,7 @@
 ]
 },
 {
-"id": "Jane",
+"username": "Jane",
 "todos": [
 {
 "content": "Get kids from the school",
@@ -32,7 +32,7 @@
 ]
 },
 {
-"id": "Rick",
+"username": "Rick",
 "todos": [
 {
 "content": "Clean the house",

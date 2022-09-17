@@ -17,10 +17,18 @@ const UI = (function () {
     const formLoginBtn = document.querySelector('.form-login-btn');
     const usernameInput = document.querySelector('.username-input');
     const usernameError = document.querySelector('.username-error');
-    const formCloseBtn = document.querySelector('.form-close-btn');
+    const formCloseBtn = [...document.querySelectorAll('.form-close-btn')];
     const themeName = document.querySelector('.theme-name');
     const todosSection = document.querySelector('.todos-section');
     const loginForm = document.querySelector('.login-form');
+    const signupBtnLoginForm = document.querySelector('.sign-up-btn');
+    const signupBtnSignupForm = document.querySelector('.form-signup-btn');
+    const signupForm = document.querySelector('.signup-form');
+    const signupUsernameInput = document.querySelector(
+        '.signup-username-input'
+    );
+    const signupFormOverlay = document.querySelector('.signup-overlay-form');
+    const signupFormError = document.querySelector('.signup-username-error');
     let isLoginPressed = false;
 
     themeModeSwitchBtn.addEventListener('click', switchThemeMode);
@@ -34,7 +42,16 @@ const UI = (function () {
             usernameInput
         )
     );
-    formCloseBtn.addEventListener('click', closeForm);
+    formCloseBtn.forEach((btn) => btn.addEventListener('click', closeForm));
+    signupBtnLoginForm.addEventListener('click', displaySignupForm);
+    signupUsernameInput.addEventListener(
+        'input',
+        myUtilityFunctions.showInputValidationError.bind(
+            signupUsernameInput,
+            signupUsernameInput
+        )
+    );
+    signupBtnSignupForm.addEventListener('click', signup);
 
     // initialize account if account is saved to localstorage
     initializeAccount();
@@ -80,6 +97,15 @@ const UI = (function () {
         usernameError.classList.add('hidden');
     }
 
+    function displaySignupForm() {
+        overlay.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+
+        signupUsernameInput.value = '';
+        signupFormError.classList.add('hidden');
+    }
+
     function logout() {
         const accountBtn = document.querySelector('.account-btn');
         accountBtn.classList.remove('account-btn');
@@ -92,6 +118,7 @@ const UI = (function () {
     function closeForm() {
         overlay.classList.add('hidden');
         loginForm.classList.add('hidden');
+        signupForm.classList.add('hidden');
     }
 
     function switchToAccount(username) {
@@ -114,20 +141,23 @@ const UI = (function () {
         isLoginPressed = true;
 
         // If username is not in right form
-        if (!myUtilityFunctions.isInputValidationCorrect.bind(usernameInput)) {
-            myUtilityFunctions.showInputValidationError.bind(usernameInput);
+        if (!myUtilityFunctions.isInputValidationCorrect(usernameInput)) {
+            myUtilityFunctions.showInputValidationError(usernameInput);
             e.preventDefault();
             isLoginPressed = false;
             return;
         }
         formOverlay.classList.remove('hidden');
         const username = usernameInput.value;
-        const userTodos = await myAccount.getUserTodos(username);
+        const userData = await myAccount.getUserData(username);
 
         // If entered username exists, logs in
-        if (userTodos) {
+        if (userData) {
+            const userTodos = userData.todos;
+            myAccount.setAccountProperties(userData);
             // Displays todos and add task button
             await myTodos.displayUserTodos(userTodos);
+
             switchToAccount(username);
             myTodos.displayAddTodoButton(todosSection);
             closeForm();
@@ -142,6 +172,37 @@ const UI = (function () {
         }
     }
 
+    async function signup(e) {
+        const username = signupUsernameInput.value;
+
+        if (!myUtilityFunctions.isInputValidationCorrect(signupUsernameInput)) {
+            myUtilityFunctions.showInputValidationError(signupUsernameInput);
+            e.preventDefault();
+            return;
+        }
+        signupFormOverlay.classList.remove('hidden');
+        let userData = await myAccount.getUserData(username);
+
+        if (userData) {
+            signupFormError.classList.remove('hidden');
+            signupFormOverlay.classList.add('hidden');
+            return;
+        }
+
+        // creates new account
+        await myAccount.addNewAccount(username);
+        userData = await myAccount.getUserData(username);
+        // sets account properties to new account's
+        myAccount.setAccountProperties(userData);
+        signupFormOverlay.classList.add('hidden');
+        closeForm();
+        switchToAccount(username);
+        myTodos.displayUserTodos(myAccount.todos);
+        myTodos.displayAddTodoButton(todosSection);
+        myAccount.username = username;
+        myLocalStorage.saveAccount(myAccount);
+    }
+
     function initializeAccount() {
         if (myLocalStorage.getAccount()) {
             myLocalStorage.initializeAccountProperties(myAccount);
@@ -149,7 +210,6 @@ const UI = (function () {
             switchToAccount(myAccount.username);
             myTodos.displayAddTodoButton(todosSection);
             switchThemeMode(account.darkMode);
-        } else {
         }
     }
 })();
