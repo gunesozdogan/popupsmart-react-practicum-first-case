@@ -1,6 +1,6 @@
 # Todo App
 
-<a href="https://gunesozdogan.github.io/popupsmart-react-practicum-first-case/" name="demo">Live Demo</a>
+<a href="https://gunesozdogan.github.io/todo-app/" name="demo">Live Demo</a>
 
 -   App screenshots are at the bottom.
 
