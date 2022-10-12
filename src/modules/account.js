@@ -17,7 +17,7 @@ const account = (function () {
     const getUserData = async function (username) {
         try {
             const response = await fetch(
-                `https://632498066f7a75f8b795c5fa.mockapi.io/todos?username=${username}`,
+                `https://6346b5959eb7f8c0f8835425.mockapi.io/todos?username=${username}`,
                 {
                     method: 'GET',
                     headers: {
@@ -43,7 +43,7 @@ const account = (function () {
             todos: userTodos,
         };
 
-        fetch(`https://632498066f7a75f8b795c5fa.mockapi.io/todos/${userID}`, {
+        fetch(`https://6346b5959eb7f8c0f8835425.mockapi.io/todos/${userID}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -59,7 +59,7 @@ const account = (function () {
             todos: [],
         };
 
-        await fetch(`https://632498066f7a75f8b795c5fa.mockapi.io/todos`, {
+        await fetch(`https://6346b5959eb7f8c0f8835425.mockapi.io/todos`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
